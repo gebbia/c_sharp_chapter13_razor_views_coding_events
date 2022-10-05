@@ -1,0 +1,11 @@
+﻿body {
+}
+
+
+/*If we want to link to this file to use it for a view,
+we would use the following line of HTML.
+
+<link rel="stylesheet" type="text/css" href="~/css/custom.css" >
+
+Because we added our file to the css subdirectory inside the
+wwwwroot directory, our link is simply "~/css/custom.css" */
