@@ -14,10 +14,26 @@
     <p>No events yet!</p>
 }
 
-    <ul> 
-        @foreach (string meeting in ViewBag.events)
-    {
-            <li>@meeting</li>
-    }
-    </ul>
+<table class="table table-hover">
+    <thead>
+        <tr>
+         <th scope="col">
+            Name
+        </th>
+        <th scope="col">
+            Description
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach (KeyValuePair<string, string> evt in ViewBag.events)
+        {   
+            <tr>
+                <th scope="row">@evt.Key</th>
+                <th scope="row">@evt.Value</th>    
+            </tr>
+        }
+    </tbody>
+</table>
 
