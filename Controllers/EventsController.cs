@@ -1,4 +1,5 @@
 ﻿using CodingEvents.Models;
+using CodingEvents.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Reflection.Metadata.Ecma335;
@@ -13,30 +14,43 @@ namespace CodingEvents.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.events = EventData.GetAll();
+            List<Event> events = new List<Event>(EventData.GetAll());
 
-            return View();
+            return View(events);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            return View(addEventViewModel);
         }
 
         [HttpPost]
-        [Route("/Events/Add")]
-        public IActionResult NewEvent(Event newEvent)
+        public IActionResult Add(AddEventViewModel addEventViewModel)
         {
-            EventData.Add(newEvent);
+            if (ModelState.IsValid)
+            {
+                Event newEvent = new Event
+                {
+                    Name = addEventViewModel.Name,
+                    Description = addEventViewModel.Description,
+                    ContactEmail = addEventViewModel.ContactEmail
+                };
 
-            return Redirect("/Events");
+                EventData.Add(newEvent);
+
+                return Redirect("/Events");
+            }
+
+            return View(addEventViewModel);
         }
+
         public IActionResult Delete()
         {
-            ViewBag.events = EventData.GetAll();
+            List<Event> events = new List<Event>(EventData.GetAll());
 
-            return View();
+            return View(events);
         }
 
         [HttpPost]
