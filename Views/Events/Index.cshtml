@@ -37,6 +37,9 @@
         <th scope="col">
             Description
         </th>
+                <th scope="col">
+            Contact Email
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -47,6 +50,7 @@
                 <th scope="row">@evt.Id</th>
                 <th scope="row">@evt.Name</th>
                 <th scope="row">@evt.Description</th>
+                <th scope="row">@evt.ContactEmail</th>
                 <th scope="row"><a asp-controller="Events" asp-action="Edit" asp-route-id="@evt.Id">Edit Event</a></th>
             </tr>
         }
